@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ url('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ url('css/sidebar.css') }}">
     <!-- Styles -->
-
+    <script src="assets/vendor/ckeditor5/build/ckeditor.js"></script>
 </head>
 
 <body>

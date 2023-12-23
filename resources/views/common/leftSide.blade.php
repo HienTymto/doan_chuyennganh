@@ -16,6 +16,9 @@
         <li class="nav-item flex-column collapsible mt-4">
             <a class="nav-link" href="{{ route('thembaiviet') }}"><i class="bi bi-database-add"></i> Thêm bài viết</a>
         </li>
+        <li class="nav-item flex-column collapsible mt-4">
+            <a class="nav-link" href="{{ route('danhmuc') }}"><i class="bi bi-database-add"></i> Danh mục</a>
+        </li>
     </ul>
    
             {{-- <div class="container p-2 m-2 bg-white rounded text-center " >

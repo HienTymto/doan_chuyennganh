@@ -27,28 +27,31 @@
                             <p class="text-danger"> {{ $errors->get('tieude')[0] }} </p>
                         @endif
                     </div>
+                    
                     <div class="form-group container pt-5">
                         <label for="exampleFormControlTextarea1" class="form-label">Nội dung:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="noidung"></textarea>
+                        <div id="editor" name="noidung"></div>
                         @if ($errors->has('noidung'))
                             <p class="text-danger"> {{ $errors->get('noidung')[0] }} </p>
                         @endif
                     </div>
                 </div>
-                <div class="form-group container pt-5">
-                    <label for="exampleFormControlTextarea1" class="form-label">Tóm tắt bài viết:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tomtat"></textarea>
-                </div>
-                <div class="form-group mt-3">
-                    <label for="my-input">Ảnh:</label>
-                    <input type="file" name="anh" id="anh" class="form-control">
-                    <img id="preview-image" class="mt-3 " src="#" alt="Ảnh sản phẩm"
-                        style="max-width: 200px; border-radius:5px; height:150px">
-                </div>
-                <div class="form-group mt-3">
-                    <select name="danhmuc" id="">
-                        <option value=""></option>
-                    </select>
+                <div class="col-6">
+                    <div class="form-group container pt-5">
+                        <label for="exampleFormControlTextarea1" class="form-label">Tóm tắt bài viết:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tomtat"></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="my-input">Ảnh:</label>
+                        <input type="file" name="anh" id="anh" class="form-control">
+                        <img id="preview-image" class="mt-3 " src="#" alt="Ảnh sản phẩm"
+                            style="max-width: 200px; border-radius:5px; height:150px">
+                    </div>
+                    <div class="form-group mt-3">
+                        <select name="danhmuc" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group btn-them-bai-viet container pt-5">
                     <button type="submit" class="btn btn-primary">Đăng bài</button>
@@ -59,10 +62,13 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
+        var myEditor = ClassicEditor.create(
+            document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}'
+                }
+            }).then(editor => {
+            myEditor = editor;
+        })
     </script>
 @endsection

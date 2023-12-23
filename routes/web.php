@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\BaiVietController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\TintucController;
+use App\Http\Controllers\admin\DanhmucController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,16 @@ Route::middleware(['auth', 'verified' , 'admin'])->group(function(){
     Route::post('admin/thembaiviet', [TintucController::class,'store'])->name('thembaiviet');
     Route::get('admin/thembaiviet', [TintucController::class,'show'])->name('thembaiviet');     
     Route::get('admin/danhsach',[TintucController::class,'danhsach'])->name('danhsach');
+    Route::get('admin/danhmuc',[DanhmucController::class,'index'])->name('danhmuc');
     Route::get('/admin/SuabaiViet/{id}',[TintucController::class,'edit'])->name('edit');
     Route::post('/admin/SuabaiViet/{id}',[TintucController::class,'update'])->name('edit');
     Route::get('/baiviet.delete/{id}',[TintucController::class,'destroy'])->name('delete');
+    Route::post('/danhmuc',[DanhmucController::class,'create'])->name('themdanhmuc');
+    Route::get('/dm.delete/{id}',[DanhmucController::class,'destroy'])->name('dmdelete');
 });
+
+//Ckeditor Route
+Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
+Route::get('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
 require __DIR__.'/auth.php';
